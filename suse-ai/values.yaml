@@ -43,7 +43,7 @@ open-webui:
 service:
   type: LoadBalancer
   annotations: {}
-  port: 80
+  port: 8080
   containerPort: 8080
   labels: {}
   loadBalancerClass: ""
