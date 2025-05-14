@@ -6,8 +6,12 @@ helm:
   ociRegistry:
     authSecretName: application-collection
 
-  chart: "oci://dp.apps.rancher.io/charts/open-webui"
-  version: "5.16.0"
+  chart: "oci://dp.apps.rancher.io/charts/ollama"
+  version: "1.11.0"
  
   valuesFiles:
-    - values.yaml
+    - ollama-values.yaml
+
+
+
+  

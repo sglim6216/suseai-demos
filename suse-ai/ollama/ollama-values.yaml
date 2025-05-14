@@ -1,0 +1,25 @@
+global:
+  imagePullSecrets:
+  - application-collection
+
+specs:
+  image:
+    registry: dp.apps.rancher.io
+    repository: containers/ollama
+    tag: 0.6.2
+    pullPolicy: IfNotPresent
+
+ingress:
+  enabled: false
+service:
+  type: ClusterIP
+persistentVolume:
+  storageClass: local-path
+
+ollama: 
+  # -- List of models to pull at container startup
+  models:
+    pull:
+      - gemma3:1b-it-qat
+
+   
