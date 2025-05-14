@@ -6,7 +6,8 @@ global:
   # -- Global override for container image registry
   imageRegistry: ""
   # -- Global override for container image registry pull secrets
-  imagePullSecrets: []
+  imagePullSecrets:
+  - application-collection
 
 # Default values for pytorch.
 # This is a YAML-formatted file.
@@ -19,7 +20,7 @@ image:
   # -- Image repository to use for the pytorch container
   repository: containers/pytorch
   # -- Image tag to use for the pytorch container
-  tag: "2.7.0-nvidia-2.1"
+  tag: "2.7.0-nvidia"
   # This sets the pull policy for images.
   pullPolicy: IfNotPresent
 
