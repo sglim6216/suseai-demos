@@ -11,4 +11,4 @@ spec:
     authSecretName: application-collection
   branch: main
   paths:
-  - suse-ai
+  - suse-ai-ml
