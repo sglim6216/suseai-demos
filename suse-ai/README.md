@@ -49,13 +49,6 @@ kubectl create secret docker-registry application-collection \
 --docker-password=<INSERT YOUR TOKEN FROM APPCO> \
 -n suseai
 ```
-```SHELL
-kubectl create secret docker-registry application-collection \
---docker-server=dp.apps.rancher.io \
---docker-username=<your registered account on appco> \
---docker-password=<INSERT YOUR TOKEN FROM APPCO> \
--n fleet-local
-```
 
 ## Use Rancher Application Collection for components
 

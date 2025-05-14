@@ -24,7 +24,7 @@ open-webui:
     host: suse-ollama-webui 
   extraEnvVars:
   - name: DEFAULT_MODELS
-    value: "gemma:2b"
+    value: "gemma3:1b-it-qat"
   - name: DEFAULT_USER_ROLE
     value: "user"
   - name: WEBUI_NAME
