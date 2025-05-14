@@ -5,21 +5,15 @@ from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_core.output_parsers import StrOutputParser
 import os
 from langchain_community.chat_message_histories import SQLChatMessageHistory
+import mlflow
 
-def get_ollama_models():
-    """
-    Get the list of available models from the Ollama API.
-    """
-    import requests
-    response = requests.get("http://localhost:11434/v1/models")
-    if response.status_code == 200:
-        return response.json()
-    else:
-        raise Exception("Failed to fetch models from Ollama API")
-# Get the list of available models
-models = get_ollama_models()
+# Enable auto-tracing for OpenAI
+mlflow.openai.autolog()
 
 
+# Optional: Set a tracking URI and an experiment
+mlflow.set_tracking_uri("http://192.168.64.11:5000")
+mlflow.set_experiment("Ollama")
 
 model_name = "gemma3:1b-it-qat"
 
@@ -43,7 +37,9 @@ with_message_history = RunnableWithMessageHistory(
     history_messages_key="history"
 )
 
-def chatbot(input_value, history):
+@mlflow.trace  
+def chatbot(input_value, history): 
+    
     response = with_message_history.stream(
             {"ability": "everything", "question": input_value},
             config={"configurable": {"session_id": os.getsid(0)}},
