@@ -5,7 +5,6 @@ helm:
   helmSecretName: basic-auth-secret
   ociRegistry:
     authSecretName: application-collection
-
   chart: "oci://dp.apps.rancher.io/charts/pytorch"
   version: "0.1.0"
  

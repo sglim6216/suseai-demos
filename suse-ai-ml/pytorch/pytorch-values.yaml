@@ -19,7 +19,7 @@ image:
   # -- Image repository to use for the pytorch container
   repository: containers/pytorch
   # -- Image tag to use for the pytorch container
-  tag: "2.5.0-nvidia"
+  tag: "2.7.0-nvidia"
   # This sets the pull policy for images.
   pullPolicy: IfNotPresent
 

@@ -11,5 +11,6 @@ spec:
     authSecretName: application-collection
   branch: main
   paths:
-  - suse-ai-ml
+  - suse-ai-ml/mlflow
+  - suse-ai-ml/pytorch
   - suse-ai/ollama
