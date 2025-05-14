@@ -79,15 +79,15 @@ securityContext: {}
 service:
   enabled: true
   # -- Service type
-  type: ClusterIP
+  type: NodePort
   # -- Service port
   port: 8080
   containerPort: 8080
   # -- Service node port when service type is 'NodePort'
   nodePort: 31808
   # -- Load Balancer IP address
-  loadBalancerIP:
-  loadBalancerClass:
+  # loadBalancerIP:
+  # loadBalancerClass:
   # -- Annotations to add to the service
   annotations: {}
 
@@ -110,6 +110,9 @@ ingress:
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
+  service:
+  nodePort: 31808
+  type: NodePort
   hosts:
     - host: chart-example.local
       paths:
