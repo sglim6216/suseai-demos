@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlflow-deployment
+  namespace: suseai
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mlflow
+  template:
+    metadata:
+      labels:
+        app: mlflow
+    spec:
+      serviceAccountName: cluster-admin-sa
+      containers:
+        - name: mlflow-container
+          image: dp.apps.rancher.io/containers/mlflow:2.22.0
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
+          ports:
+            - containerPort: 5000
+      imagePullSecrets:
+      - name: application-collection
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mlflow-service
+  namespace: suseai
+spec:
+  selector:
+    app: mlflow
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 000
+      nodePort: 31500
+  type: NodePort # Or ClusterIP if you don't need external access
