@@ -8,9 +8,13 @@ from langchain_community.chat_message_histories import SQLChatMessageHistory
 import mlflow
 import time
 
+import mlflow.openai
+import mlflow.tracking
+
 # Enable auto-tracing for OpenAI
-mlflow.openai.autolog()
+mlflow.openai.autolog(log_models=True, log_traces=True)
 mlflow.enable_system_metrics_logging()
+
 
 with mlflow.start_run() as run:
     time.sleep(15)
@@ -29,7 +33,7 @@ mlflow.set_tags(tags=tags)
 
 model_name = "gemma3:1b-it-qat"
 
-llm = ChatOllama(model=model_name)
+llm = ChatOllama(base_url="http://192.168.64.11:31434",model=model_name)
 
 prompt = ChatPromptTemplate.from_messages([
     ("system", "You're an assistant who's good at {ability}"),
@@ -49,9 +53,8 @@ with_message_history = RunnableWithMessageHistory(
     history_messages_key="history"
 )
 
-@mlflow.trace  
-def chatbot(input_value, history): 
-    
+@mlflow.trace
+def chatbot(input_value, history):
     response = with_message_history.stream(
             {"ability": "everything", "question": input_value},
             config={"configurable": {"session_id": os.getsid(0)}},
@@ -61,6 +64,7 @@ def chatbot(input_value, history):
         full_response += item
         yield full_response
     yield full_response
+
 
 iface = gr.ChatInterface(fn=chatbot, title="🦙💬 Chatbot using Gemma3 via Ollama")
 iface.launch(inbrowser=True)
