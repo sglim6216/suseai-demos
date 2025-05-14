@@ -113,7 +113,7 @@ kubectl create secret generic basic-auth-secret \--from-literal=username=<your r
 Now let's execute the config with kubectl
 
 ```SHELL
-kubectl apply -f rancher-config.yaml
+kubectl apply -f fleet-deployment.yaml
 ```
 You should have minimal SUSE AI stack deployed
 
@@ -160,3 +160,4 @@ ollama:
     run: 
       - suseai-k8s
 ```
+Once we are ready, let's commit and observe...our Open-WebUI will now show a nice custom model we may use immediately.
