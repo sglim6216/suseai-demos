@@ -12,7 +12,7 @@ image:
 
   pullPolicy: IfNotPresent
 ollamaUrls:
-- http://suseai-k8s-assistant-suseai-ollama.suseai.svc.cluster.local:11434
+- http://suseai-suse-ai-ollama.suseai.svc.cluster.local:11434
 persistence:
   storageClass: local-path
 ollama:
@@ -60,7 +60,7 @@ extraEnvVars:
 - name: VECTOR_DB
   value: "milvus"
 - name: MILVUS_URI
-  value: http://suseai-milvus.suseai.svc.cluster.local:19530
+  value: http://suseai-suse-ai-milvus.suseai.svc.cluster.local:19530
 
 
 
