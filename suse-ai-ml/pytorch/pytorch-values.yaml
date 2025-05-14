@@ -77,14 +77,14 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  enabled: false
+  enabled: true
   # -- Service type
   type: ClusterIP
   # -- Service port
-  port: 8080
-  containerPort: 8080
+  port: 
+  containerPort:
   # -- Service node port when service type is 'NodePort'
-  nodePort: "31808"
+  nodePort: 
   # -- Load Balancer IP address
   loadBalancerIP:
   loadBalancerClass:
