@@ -81,10 +81,10 @@ service:
   # -- Service type
   type: ClusterIP
   # -- Service port
-  port: 
-  containerPort:
+  port: 8080
+  containerPort: 8080
   # -- Service node port when service type is 'NodePort'
-  nodePort: 
+  nodePort: 31808
   # -- Load Balancer IP address
   loadBalancerIP:
   loadBalancerClass:
