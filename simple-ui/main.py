@@ -6,14 +6,26 @@ from langchain_core.output_parsers import StrOutputParser
 import os
 from langchain_community.chat_message_histories import SQLChatMessageHistory
 import mlflow
+import time
 
 # Enable auto-tracing for OpenAI
 mlflow.openai.autolog()
+mlflow.enable_system_metrics_logging()
+
+with mlflow.start_run() as run:
+    time.sleep(15)
+
+tags= {
+    "model": "gemma3:1b-it-qat",
+    "platform": "suse-ai"
+}
 
 
 # Optional: Set a tracking URI and an experiment
 mlflow.set_tracking_uri("http://192.168.64.11:5000")
-mlflow.set_experiment("Ollama")
+mlflow.set_experiment("Default")
+mlflow.set_experiment_tag("platform", "suse-ai-chat")
+mlflow.set_tags(tags=tags)
 
 model_name = "gemma3:1b-it-qat"
 
