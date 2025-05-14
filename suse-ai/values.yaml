@@ -4,7 +4,12 @@
 global:
   imagePullSecrets:
   - application-collection
+
 ollama:
+  image:
+    registry: dp.apps.rancher.io
+    repository: containers/ollama
+    tag: 0.6.2
   #To learn more about the entries, helm show values oci://dp.apps.rancher.io/charts/ollama
   enabled: true
   persistentVolume:
@@ -14,14 +19,34 @@ open-webui:
   #To learn more about the entries, helm show values oci://dp.apps.rancher.io/charts/open-webui
   enabled: true
   ollamaUrls:
-  - http://suse-ai-ollama.suseai.svc.cluster.local:11434
+  - http://open-webui-ollama.suseai.svc.cluster.local:11434
   persistence:
     enabled: true
     storageClass: local-path
   ollama:
+    enabled: true
+    models:
+      pull: 
+        - gemma3:1b-it-qat
+  pipelines:
+    enabled: false
+  tika:
     enabled: false
   ingress:
-    host: suse-ollama-webui 
+    host: suse-ollama-webui
+    enabled: true
+  class: ""
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  host: ollama
+  tls: true
+service:
+  type: LoadlBalancer
+  annotations: {}
+  port: 80
+  containerPort: 8080
+  labels: {}
+  loadBalancerClass: ""
   extraEnvVars:
   - name: DEFAULT_MODELS
     value: "gemma3:1b-it-qat"
@@ -34,7 +59,7 @@ open-webui:
   - name: VECTOR_DB
     value: "milvus"
   - name: MILVUS_URI
-    value: http://suse-ai-milvus.suseai.svc.cluster.local:19530
+    value: http://open-webui-milvus.suseai.svc.cluster.local:19530
 milvus:
   enabled: true
   cluster:
@@ -58,6 +83,6 @@ milvus:
       requests:
         memory: 1024Mi
   kafka:
-    enabled: false
+    enabled: true
 pytorch:
   enabled: false
