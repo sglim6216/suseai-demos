@@ -12,7 +12,8 @@ specs:
 ingress:
   enabled: false
 service:
-  type: ClusterIP
+  nodePort: 31434
+  type: NodePort
 persistentVolume:
   storageClass: local-path
 
