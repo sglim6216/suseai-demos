@@ -41,7 +41,7 @@ open-webui:
   host: ollama
   tls: true
 service:
-  type: LoadlBalancer
+  type: LoadBalancer
   annotations: {}
   port: 80
   containerPort: 8080
