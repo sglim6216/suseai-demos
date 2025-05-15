@@ -8,6 +8,7 @@ from langchain_community.chat_message_histories import SQLChatMessageHistory
 import mlflow
 import time
 
+
 import mlflow.openai
 import mlflow.tracking
 
@@ -33,7 +34,7 @@ mlflow.set_tags(tags=tags)
 
 model_name = "gemma3:1b-it-qat"
 
-llm = ChatOllama(base_url="http://192.168.64.11:31434",model=model_name)
+llm = ChatOllama(base_url="http://192.168.64.12:31434",model=model_name)
 
 prompt = ChatPromptTemplate.from_messages([
     ("system", "You're an assistant who's good at {ability}"),
