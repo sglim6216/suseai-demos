@@ -28,19 +28,19 @@ ollama:
           FROM qwen2.5:0.5b-instruct
           TEMPLATE """
           {{- range $index, $_ := .Messages }}
-          {{- if eq .Role "system" }}[SYSTEM_PROMPT]{{ .Content }}[/SYSTEM_PROMPT]
+          {{- if eq .Role "system" }}
           {{- else if eq .Role "user" }}
-          {{- if and (le (len (slice $.Messages $index)) 2) $.Tools }}[AVAILABLE_TOOLS]{{ $.Tools }}[/AVAILABLE_TOOLS]
-          {{- end }}[INST]{{ .Content }}[/INST]
+          {{- if and (le (len (slice $.Messages $index)) 2) $.Tools }}
+          {{- end }}
           {{- else if eq .Role "assistant" }}
           {{- if .Content }}{{ .Content }}
           {{- if not (eq (len (slice $.Messages $index)) 1) }}</s>
           {{- end }}
-          {{- else if .ToolCalls }}[TOOL_CALLS][
+          {{- else if .ToolCalls }}
           {{- range .ToolCalls }}{"name": "{{ .Function.Name }}", "arguments": {{ .Function.Arguments }}}
-          {{- end }}]</s>
           {{- end }}
-          {{- else if eq .Role "tool" }}[TOOL_RESULTS]{"content": {{ .Content }}}[/TOOL_RESULTS]
+          {{- end }}
+          {{- else if eq .Role "tool" }}{"content": {{ .Content }}}
           {{- end }}
           {{- end }}
           """
