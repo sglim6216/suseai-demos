@@ -6,8 +6,8 @@ helm:
   ociRegistry:
     authSecretName: application-collection
 
-  chart: "oci://dp.apps.rancher.io/charts/ollama"
-  version: "1.11.0"
+  chart: "https://otwld.github.io/ollama-helm/"
+  # version: "1.11.0"
  
   valuesFiles:
     - ollama-values.yaml

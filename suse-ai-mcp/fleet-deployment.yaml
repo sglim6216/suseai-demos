@@ -13,4 +13,4 @@ spec:
   paths:
   - suse-ai-mcp
   - suse-ai/milvus
-  - suse-ai/owui
+  - suse-ai/open-webui
