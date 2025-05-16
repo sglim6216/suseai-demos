@@ -25,7 +25,7 @@ spec:
               cpu: "500m"
           command: ["curl"]
           args:
-            - "X"
+            - "-X"
             - "POST"
             - "http://open-webui.suseai.svc.cluster.local/api/v1/configs/tool_servers"
             - "--header"
@@ -33,4 +33,4 @@ spec:
             - "--request"
             - "POST"
             - "--data" 
-            - '{"TOOL_SERVER_CONNECTIONS":[{"url": "http://mcpo-service.suseai.svc.suseai.cluster.local:8000/kubernetes","path": "openai.json","auth_type": "Authorization/Bearer: top-secret","key": "string","config": {},"additionalProp1": {}}]}'
+            - '{"TOOL_SERVER_CONNECTIONS":[{"url": "http://mcpo-service.suseai.svc.suseai.cluster.local:8000/kubernetes","path": "openai.json","auth_type": "Authorization: Bearer","key": "top-secret","config": {},"additionalProp1": {}}]}'
