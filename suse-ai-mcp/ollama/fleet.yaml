@@ -6,7 +6,7 @@ helm:
   ociRegistry:
     authSecretName: application-collection
 
-  chart: "https://otwld.github.io/ollama-helm/"
+  chart: "ollama-helm/ollama"
   # version: "1.11.0"
  
   valuesFiles:
