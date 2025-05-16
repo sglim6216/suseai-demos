@@ -12,7 +12,7 @@ image:
 
   pullPolicy: IfNotPresent
 ollamaUrls:
-- http://suseai-suse-ai-ollama.suseai.svc.cluster.local:11434
+- http://suseai-suse-ai-mcp-ollama.suseai.svc.cluster.local:11434
 persistence:
   storageClass: local-path
 ollama:
