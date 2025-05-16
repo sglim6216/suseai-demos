@@ -26,7 +26,8 @@ ollama:
       - name: susekai
         template: |
           FROM qwen2.5:0.5b-instruct
-          TEMPLATE """{{- range $index, $_ := .Messages }}
+          TEMPLATE """
+          {{- range $index, $_ := .Messages }}
           {{- if eq .Role "system" }}[SYSTEM_PROMPT]{{ .Content }}[/SYSTEM_PROMPT]
           {{- else if eq .Role "user" }}
           {{- if and (le (len (slice $.Messages $index)) 2) $.Tools }}[AVAILABLE_TOOLS]{{ $.Tools }}[/AVAILABLE_TOOLS]
