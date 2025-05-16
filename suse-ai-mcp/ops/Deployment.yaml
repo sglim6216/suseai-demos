@@ -31,4 +31,13 @@ spec:
                 -H 'Authorization: Bearer ollama' \
                 -H "Accept: application/json" \
                 -H 'Content-Type: application/json' \
-                -d '{"TOOL_SERVER_CONNECTIONS": [{"url": "http://mcpo-service.suseai.svc.suseai.cluster.local:8000/kubernetes","path": "openai.json","auth_type": "Authorization: Bearer","key": "top-secret"}]}'
+                -d '{
+                "TOOL_SERVER_CONNECTIONS": [
+                  {
+                    "url": "http://mcpo-service.suseai.svc.cluster.local:8000/kubernetes",
+                    "path": "openai.json",
+                    "auth_type": "Bearer",
+                    "key": "top-secret"
+                  }
+                ]
+              }'
