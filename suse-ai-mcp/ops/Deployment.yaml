@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: suseai-op
-          image: tutum/curl
+          image: curlimages/curl:latest
           resources:
             requests:
               memory: "512Mi"
