@@ -25,4 +25,4 @@ spec:
               cpu: "500m"
           command: ["/bin/sh","-c"]
           args:
-            - "curl -X POST http://open-webui.suseai.svc.cluster.local:8000/api/v1/configs/tool_servers -H 'Authorization: Bearer sk-ec42c6cce14a42188653b03895831291' -H  'Content-Type: application/json' -d '{'TOOL_SERVER_CONNECTIONS':[{'url': 'http://mcpo-service.suseai.svc.suseai.cluster.local:8000/kubernetes','path': 'openai.json','auth_type': 'Authorization: Bearer','key': 'top-secret','config': '{}','additionalProp1': '{}'}]}'"
+            - "curl -X POST http://open-webui.suseai.svc.cluster.local:8000/api/v1/configs/tool_servers -H 'Authorization: Bearer sk-ec42c6cce14a42188653b03895831291' -H  'Content-Type: application/json' -d '{'TOOL_SERVER_CONNECTIONS':[{'url': 'http://mcpo-service.suseai.svc.suseai.cluster.local:8000/kubernetes','path': 'openai.json','auth_type': 'Authorization: Bearer','key': 'top-secret'}]}'"
