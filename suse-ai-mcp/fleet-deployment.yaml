@@ -12,7 +12,6 @@ spec:
   branch: main
   paths:
   - suse-ai-mcp
-  - suse-ai/milvus
-  - suse-ai/open-webui
+  - suse-ai
 
 
