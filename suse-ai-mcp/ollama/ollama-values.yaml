@@ -26,57 +26,24 @@ ollama:
       - name: susekai
         template: |
           FROM qwen2.5:0.5b-instruct
-          TEMPLATE """{{- if .Messages }}
-          {{- if or .System .Tools }}<|im_start|>system
-          {{- if .System }}
-          {{ .System }}
+          TEMPLATE """{{- range $index, $_ := .Messages }}
+          {{- if eq .Role "system" }}[SYSTEM_PROMPT]{{ .Content }}[/SYSTEM_PROMPT]
+          {{- else if eq .Role "user" }}
+          {{- if and (le (len (slice $.Messages $index)) 2) $.Tools }}[AVAILABLE_TOOLS]{{ $.Tools }}[/AVAILABLE_TOOLS]
+          {{- end }}[INST]{{ .Content }}[/INST]
+          {{- else if eq .Role "assistant" }}
+          {{- if .Content }}{{ .Content }}
+          {{- if not (eq (len (slice $.Messages $index)) 1) }}</s>
           {{- end }}
-          {{- if .Tools }}
-
-          # Tools
-
-          You may call one or more functions to assist with the user query.
-
-          You are provided with function signatures within <tools></tools> XML tags:
-          <tools>
-          {{- range .Tools }}
-          {"type": "function", "function": {{ .Function }}}
+          {{- else if .ToolCalls }}[TOOL_CALLS][
+          {{- range .ToolCalls }}{"name": "{{ .Function.Name }}", "arguments": {{ .Function.Arguments }}}
+          {{- end }}]</s>
           {{- end }}
-          </tools>
-
-          For each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:
-          <tool_call>
-          {"name": <function-name>, "arguments": <args-json-object>}
-          </tool_call>
-          {{- end }}<|im_end|>
-          {{ end }}
-          {{- range $i, $_ := .Messages }}
-          {{- $last := eq (len (slice $.Messages $i)) 1 -}}
-          {{- if eq .Role "user" }}<|im_start|>user
-          {{ .Content }}<|im_end|>
-          {{ else if eq .Role "assistant" }}<|im_start|>assistant
-          {{ if .Content }}{{ .Content }}
-          {{- else if .ToolCalls }}<tool_call>
-          {{ range .ToolCalls }}{"name": "{{ .Function.Name }}", "arguments": {{ .Function.Arguments }}}
-          {{ end }}</tool_call>
-          {{- end }}{{ if not $last }}<|im_end|>
-          {{ end }}
-          {{- else if eq .Role "tool" }}<|im_start|>user
-          <tool_response>
-          {{ .Content }}
-          </tool_response><|im_end|>
-          {{ end }}
-          {{- if and (ne .Role "assistant") $last }}<|im_start|>assistant
-          {{ end }}
+          {{- else if eq .Role "tool" }}[TOOL_RESULTS]{"content": {{ .Content }}}[/TOOL_RESULTS]
           {{- end }}
-          {{- else }}
-          {{- if .System }}<|im_start|>system
-          {{ .System }}<|im_end|>
-          {{ end }}{{ if .Prompt }}<|im_start|>user
-          {{ .Prompt }}<|im_end|>
-          {{ end }}<|im_start|>assistant
-          {{ end }}{{ .Response }}{{ if .Response }}<|im_end|>{{ end }}"""
-          SYSTEM You are SUSEKAI, created by SUSE based on original works of Qwen developed by Alibaba. 
+          {{- end }}"""
+
+          SYSTEM """You are SUSEKAI, created by SUSE based on original works of Qwen developed by Alibaba. 
           You are an advanced RBAC assistant for Rancher and Kubernetes environments. 
           Your role is to provide tailored recommendations for RBAC configurations, cluster access, and observability settings based on the following context 
-          and inputs.
+          and inputs."""
