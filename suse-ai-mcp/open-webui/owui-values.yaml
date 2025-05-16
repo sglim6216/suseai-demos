@@ -58,10 +58,6 @@ extraEnvVars:
   value: "SUSE AI"
 - name: GLOBAL_LOG_LEVEL
   value: INFO
-- name: VECTOR_DB
-  value: "milvus"
-- name: MILVUS_URI
-  value: http://suseai-suse-ai-milvus.suseai.svc.cluster.local:19530
 
 
 
