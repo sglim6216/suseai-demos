@@ -11,8 +11,7 @@ spec:
     authSecretName: application-collection
   branch: main
   paths:
-  - suse-ai-mcp/mcpo
-  - suse-ai-mcp/ollama
+  - suse-ai-mcp
   - suse-ai/milvus
   - suse-ai/open-webui
 
