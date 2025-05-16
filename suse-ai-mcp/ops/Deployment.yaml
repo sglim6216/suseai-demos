@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: suseai-operator
+  namespace: suseai
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: suseai-op
+  template:
+    metadata:
+      labels:
+        app: suseai-op
+    spec:
+      containers:
+        - name: suseai-op
+          image: tutum/curl
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
+          command: ["sleep","1m","curl"]
+          args:
+            - "X"
+            - "POST"
+            - "http://open-webui.suseai.svc.cluster.local/api/v1/configs/tool_servers"
+            - "--header"
+            - "Content-Type: application/json"
+            - "--request"
+            - "POST"
+            - "--data" 
+            - '{"TOOL_SERVER_CONNECTIONS":[{"url": "http://mcpo-service.suseai.svc.suseai.cluster.local:8000/kubernetes","path": "openai.json","auth_type": "Authorization/Bearer: top-secret","key": "string","config": {},"additionalProp1": {}}]}'
