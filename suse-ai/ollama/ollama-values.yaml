@@ -20,8 +20,8 @@ persistentVolume:
 ollama: 
   # -- List of models to pull at container startup
   models:
-    # pull:
-    #   - gemma3:1b-it-qat
+    pull:
+      - gemma3:1b-it-qat
     # create:
     #   - name: suseai-k8s
     #     template: |
@@ -42,27 +42,7 @@ ollama:
     #       MESSAGE assistant yes, here it is the list of namespaces
     # run: 
     #   - suseai-k8s
-    pull:
-      - qwen2.5:0.5b-instruct
-    create:
-      - name: suse-k8s-bot
-        template: | 
-          """{{- range $index, $_ := .Messages }}
-          {{- if eq .Role "system" }}[SYSTEM_PROMPT]{{ .Content }}[/SYSTEM_PROMPT]
-          {{- else if eq .Role "user" }}
-          {{- if and (le (len (slice $.Messages $index)) 2) $.Tools }}[AVAILABLE_TOOLS]{{ $.Tools }}[/AVAILABLE_TOOLS]
-          {{- end }}[INST]{{ .Content }}[/INST]
-          {{- else if eq .Role "assistant" }}
-          {{- if .Content }}{{ .Content }}
-          {{- if not (eq (len (slice $.Messages $index)) 1) }}</s>
-          {{- end }}
-          {{- else if .ToolCalls }}[TOOL_CALLS][
-          {{- range .ToolCalls }}{"name": "{{ .Function.Name }}", "arguments": {{ .Function.Arguments }}}
-          {{- end }}]</s>
-          {{- end }}
-          {{- else if eq .Role "tool" }}[TOOL_RESULTS]{"content": {{ .Content }}}[/TOOL_RESULTS]
-          {{- end }}
-          {{- end }}"""
+
 
 
 
