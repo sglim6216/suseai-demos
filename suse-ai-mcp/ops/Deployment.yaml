@@ -35,7 +35,7 @@ spec:
                 "TOOL_SERVER_CONNECTIONS": [
                   {
                     "url": "http://mcpo-service.suseai.svc.cluster.local:8000/kubernetes",
-                    "path": "openai.json",
+                    "path": "openapi.json",
                     "auth_type": "Bearer",
                     "key": "top-secret"
                   }
