@@ -23,7 +23,7 @@ spec:
             limits:
               memory: "1Gi"
               cpu: "500m"
-          command: ["sleep","1m","curl"]
+          command: ["curl"]
           args:
             - "X"
             - "POST"
