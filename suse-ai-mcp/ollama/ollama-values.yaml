@@ -4,7 +4,7 @@ global:
 
 specs:
   image:
-    # registry: dp.apps.rancher.io
+    registry: docker.io
     repository: ollama/ollama:latest
     # tag: 0.6.2
     pullPolicy: IfNotPresent
