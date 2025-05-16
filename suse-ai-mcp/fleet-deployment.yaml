@@ -1,4 +1,4 @@
-# A demo of Rancher Fleet installing our SUSE AI MCP demonstrations
+# A demo of Rancher Fleet installing our SUSE AI 
 apiVersion: fleet.cattle.io/v1alpha1
 kind: GitRepo
 metadata:
@@ -13,6 +13,5 @@ spec:
   branch: main
   paths:
   - suse-ai-mcp
-  - suse-ai/milvus
 
 
