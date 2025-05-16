@@ -32,9 +32,10 @@ ingress:
   host: ollama
   tls: true
 service:
-  type: NodePort
+  type: LoadBalancer
   annotations: {}
-  port: 80
+  port: 8000
+  targetPort: 80
   containerPort: 8080
   nodePort: 31000
   labels: {}
