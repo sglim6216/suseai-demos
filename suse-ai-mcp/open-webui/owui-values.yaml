@@ -34,9 +34,8 @@ ingress:
 service:
   type: LoadBalancer
   annotations: {}
-  port: 8000
+  port: 8088
   targetPort: 80
-  containerPort: 8080
   nodePort: 31000
   labels: {}
   loadBalancerClass: ""
