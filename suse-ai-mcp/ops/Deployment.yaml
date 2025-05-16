@@ -27,10 +27,13 @@ spec:
           args:
             - "-X"
             - "POST"
-            - "http://open-webui.suseai.svc.cluster.local/api/v1/configs/tool_servers"
+            - "http://open-webui.suseai.svc.cluster.local/api/v1/configs/tool_servers:8000"
             - "--header"
             - "Content-Type: application/json"
             - "--request"
             - "POST"
             - "--data" 
             - '{"TOOL_SERVER_CONNECTIONS":[{"url": "http://mcpo-service.suseai.svc.suseai.cluster.local:8000/kubernetes","path": "openai.json","auth_type": "Authorization: Bearer","key": "top-secret","config": {},"additionalProp1": {}}]}'
+
+
+              # curl -X POST http://open-webui.suseai.svc.cluster.local/api/v1/configs/tool_servers --header "Content-Type: application/json" --data '{"TOOL_SERVER_CONNECTIONS":[{"url": "http://mcpo-service.suseai.svc.suseai.cluster.local:8000/kubernetes","path": "openai.json","auth_type": "Authorization: Bearer","key": "top-secret","config": {},"additionalProp1": {}}]}'
