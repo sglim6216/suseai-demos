@@ -28,7 +28,7 @@ spec:
             - |
               curl -X POST \
                 'http://open-webui.suseai.svc.cluster.local:8000/api/v1/configs/tool_servers' \
-                -H 'Authorization: Bearer sk-ec42c6cce14a42188653b03895831291' \
+                -H 'Authorization: Bearer ollama' \
                 -H "Accept: application/json" \
                 -H 'Content-Type: application/json' \
                 -d '{"TOOL_SERVER_CONNECTIONS": [{"url": "http://mcpo-service.suseai.svc.suseai.cluster.local:8000/kubernetes","path": "openai.json","auth_type": "Authorization: Bearer","key": "top-secret"}]}'
