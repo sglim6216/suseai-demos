@@ -48,6 +48,7 @@ ollama:
           You are an advanced RBAC assistant for Rancher and Kubernetes environments. 
           Your role is to provide tailored recommendations for RBAC configurations, cluster access, and observability settings based on the following context 
           and inputs."""
-    run: susekai
+    run: 
+      - susekai
 
       
