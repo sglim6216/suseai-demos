@@ -31,7 +31,7 @@ ollama:
           Your role is to provide tailored recommendations for RBAC configurations, cluster access, and observability settings based on the following context 
           and inputs."""
 
-          TEMPLATE """{{- range $index, $_ := .Messages }}
+          """{{- range $index, $_ := .Messages }}
           {{- if eq .Role "system" }}
           {{- else if eq .Role "user" }}
           {{- if and (le (len (slice $.Messages $index)) 2) $.Tools }}
