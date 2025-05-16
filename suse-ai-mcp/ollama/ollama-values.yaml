@@ -22,34 +22,34 @@ ollama:
   models:
     pull:
       - qwen2.5:0.5b-instruct
-    # create:
-    #   - name: susekai
-    #     template: |
-    #       FROM qwen2.5:0.5b-instruct
-    #       TEMPLATE """
-    #       {{- range $index, $_ := .Messages }}
-    #       {{- if eq .Role "system" }}
-    #       {{- else if eq .Role "user" }}
-    #       {{- if and (le (len (slice $.Messages $index)) 2) $.Tools }}
-    #       {{- end }}
-    #       {{- else if eq .Role "assistant" }}
-    #       {{- if .Content }}{{ .Content }}
-    #       {{- if not (eq (len (slice $.Messages $index)) 1) }}</s>
-    #       {{- end }}
-    #       {{- else if .ToolCalls }}
-    #       {{- range .ToolCalls }}{"name": "{{ .Function.Name }}", "arguments": {{ .Function.Arguments }}}
-    #       {{- end }}
-    #       {{- end }}
-    #       {{- else if eq .Role "tool" }}{"content": {{ .Content }}}
-    #       {{- end }}
-    #       {{- end }}
-    #       """
+    create:
+      - name: susekai
+        template: |
+          FROM qwen2.5:0.5b-instruct
+          TEMPLATE """
+          {{- range $index, $_ := .Messages }}
+          {{- if eq .Role "system" }}
+          {{- else if eq .Role "user" }}
+          {{- if and (le (len (slice $.Messages $index)) 2) $.Tools }}
+          {{- end }}
+          {{- else if eq .Role "assistant" }}
+          {{- if .Content }}{{ .Content }}
+          {{- if not (eq (len (slice $.Messages $index)) 1) }}</s>
+          {{- end }}
+          {{- else if .ToolCalls }}
+          {{- range .ToolCalls }}{"name": "{{ .Function.Name }}", "arguments": {{ .Function.Arguments }}}
+          {{- end }}
+          {{- end }}
+          {{- else if eq .Role "tool" }}{"content": {{ .Content }}}
+          {{- end }}
+          {{- end }}
+          """
 
-    #       SYSTEM """You are SUSEKAI, created by SUSE based on original works of Qwen developed by Alibaba. 
-    #       You are an advanced RBAC assistant for Rancher and Kubernetes environments. 
-    #       Your role is to provide tailored recommendations for RBAC configurations, cluster access, and observability settings based on the following context 
-    #       and inputs."""
-    # run: 
-    #   - susekai
+          SYSTEM """You are SUSEKAI, created by SUSE based on original works of Qwen developed by Alibaba. 
+          You are an advanced RBAC assistant for Rancher and Kubernetes environments. 
+          Your role is to provide tailored recommendations for RBAC configurations, cluster access, and observability settings based on the following context 
+          and inputs."""
+    run: 
+      - susekai
 
       
