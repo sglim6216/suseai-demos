@@ -1,9 +1,10 @@
-ApiVersion: apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: toolbox
   namespace: toolbox-namespace
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: toolbox
