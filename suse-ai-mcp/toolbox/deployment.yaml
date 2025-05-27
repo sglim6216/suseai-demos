@@ -1,0 +1,34 @@
+ApiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: toolbox
+  namespace: toolbox-namespace
+spec:
+  selector:
+    matchLabels:
+      app: toolbox
+  template:
+    metadata:
+      labels:
+        app: toolbox
+    spec:
+      serviceAccountName: toolbox-service-account
+      containers:
+        - name: toolbox
+          # Recommend to use the latest version of toolbox
+          image: us-central1-docker.pkg.dev/database-toolbox/toolbox/toolbox:latest
+          args: ["--address", "0.0.0.0"]
+          ports:
+            - containerPort: 5000
+          volumeMounts:
+            - name: toolbox-config
+              mountPath: "/app/tools.yaml"
+              subPath: tools.yaml
+              readOnly: true
+      volumes:
+        - name: toolbox-config
+          secret:
+            secretName: toolbox-config
+            items:
+            - key: tools.yaml
+              path: tools.yaml
