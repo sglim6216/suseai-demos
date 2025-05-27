@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: toolbox
-  namespace: toolbox-namespace
+  namespace: suseai
 spec:
   replicas: 1
   selector:
@@ -13,7 +13,7 @@ spec:
       labels:
         app: toolbox
     spec:
-      serviceAccountName: toolbox-service-account
+      serviceAccountName: cluster-admin-sa
       containers:
         - name: toolbox
           # Recommend to use the latest version of toolbox
@@ -23,9 +23,7 @@ spec:
             - containerPort: 5000
           volumeMounts:
             - name: toolbox-config
-              mountPath: "/app/tools.yaml"
-              subPath: tools.yaml
-              readOnly: true
+              mountPath: /app/tools.yaml
       volumes:
         - name: toolbox-config
           secret:
