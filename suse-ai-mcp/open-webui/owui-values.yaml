@@ -44,7 +44,7 @@ extraEnvVars:
 - name: OPENAI_API_KEY
   value: "0p3n-w3bu!"
 - name: DEFAULT_MODELS
-  value: "susekai"
+  value: ""
 - name: DEFAULT_USER_ROLE
   value: "user"
 - name: WEBUI_NAME
