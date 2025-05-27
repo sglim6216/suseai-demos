@@ -57,7 +57,7 @@ data:
         },      
         "toolbox": {
           "type": "sse",
-          "url": "http://toolbox-service.suseai.service.cluster.local:5000/mcp/sse"
+          "url": "http://192.168.64.11:5000/mcp/sse"
         }
       }
     }
