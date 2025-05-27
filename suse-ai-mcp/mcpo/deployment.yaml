@@ -54,10 +54,10 @@ data:
         "kubernetes": {
           "command": "npx",
           "args": ["mcp-server-kubernetes"]
-        }
-      },
-      "toolbox": {
+        },      
+        "toolbox": {
         "type": "sse",
         "url": "http://toolbox-service.suseai.service.cluster.local:5000/mcp/sse",
         }
+      }
     }
