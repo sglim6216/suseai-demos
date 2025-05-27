@@ -19,6 +19,11 @@ ollama:
   enabled: false
 pipelines:
   enabled: true
+  specs:
+    image:
+      registry: dp.apps.rancher.io
+      repository: containers/open-webui-pipelines
+      tag: 0.20250329.151219
   persistence:
     enabled: false
     storageClass: local-path

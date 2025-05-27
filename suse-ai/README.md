@@ -57,7 +57,7 @@ kubectl create secret docker-registry application-collection \
 ```SHELL
 helm upgrade --install cert-manager \
   oci://dp.apps.rancher.io/charts/cert-manager \
-  --version 1.17.1 \
+  --version 1.17.2 \
   -n cert-manager \
   --create-namespace \
   --set crds.enabled=true \
