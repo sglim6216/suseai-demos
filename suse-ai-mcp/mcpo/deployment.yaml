@@ -57,7 +57,7 @@ data:
         },      
         "toolbox": {
           "type": "sse",
-          "url": "http://192.168.64.11:5000/mcp/sse"
+          "url": "http://toolbox-service:5000/mcp/sse"
         }
       }
     }
