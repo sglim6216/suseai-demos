@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: toolbox-service
-  namespace: toolbox-namespace
+  namespace: suseai
 spec:
   selector:
     app: toolbox
