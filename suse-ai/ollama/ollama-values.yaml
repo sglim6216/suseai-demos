@@ -2,12 +2,11 @@ global:
   imagePullSecrets:
   - application-collection
 
-specs:
-  image:
-    registry: dp.apps.rancher.io
-    repository: containers/ollama
-    tag: 0.6.8
-    pullPolicy: IfNotPresent
+image:
+  registry: dp.apps.rancher.io
+  repository: containers/ollama
+  tag: 0.6.8
+  pullPolicy: IfNotPresent
 
 ingress:
   enabled: false
