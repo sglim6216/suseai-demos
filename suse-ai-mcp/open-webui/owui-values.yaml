@@ -2,15 +2,9 @@ global:
   imagePullSecrets:
   - application-collection
 image:
-  # registry: dp.apps.rancher.io
-  # repository: containers/open-webui
-  # tag: 0.5.14
-
-  registry: ghcr.io
-  repository: open-webui/open-webui
-  tag: main
-
-  pullPolicy: IfNotPresent
+  registry: dp.apps.rancher.io
+  repository: containers/open-webui
+  tag: 0.6.9
 ollamaUrls:
 - http://suseai-suse-ai-mcp-ollama.suseai.svc.cluster.local:11434
 persistence:
