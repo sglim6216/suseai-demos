@@ -23,7 +23,9 @@ spec:
             - containerPort: 5000
           volumeMounts:
             - name: toolbox-config
-              mountPath: /app/tools.yaml
+              mountPath: "/app/tools.yaml"
+              subPath: tools.yaml
+              readOnly: true
       volumes:
         - name: toolbox-config
           secret:
