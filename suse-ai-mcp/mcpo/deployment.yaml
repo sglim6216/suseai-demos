@@ -56,8 +56,8 @@ data:
           "args": ["mcp-server-kubernetes"]
         },      
         "toolbox": {
-        "type": "sse",
-        "url": "http://toolbox-service.suseai.service.cluster.local:5000/mcp/sse",
+          "type": "sse",
+          "url": "http://toolbox-service.suseai.service.cluster.local:5000/mcp/sse",
         }
       }
     }
