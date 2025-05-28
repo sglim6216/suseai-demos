@@ -52,7 +52,7 @@ extraEnvVars:
 - name: GLOBAL_LOG_LEVEL
   value: INFO
 - name: ENABLE_DIRECT_CONNECTIONS
-  value: True
+  value: "True"
 - name: TOOL_SERVER_CONNECTIONS
   value: |
     [
