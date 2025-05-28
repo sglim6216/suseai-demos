@@ -55,7 +55,6 @@ extraEnvVars:
   value: "True"
 - name: TOOL_SERVER_CONNECTIONS
   value: |
-    "
       {
         "url": "http://mcpo-service.suseai.svc.cluster.local:8000/toolbox",
         "path": "openapi.json",
@@ -75,7 +74,6 @@ extraEnvVars:
           }
         }
       }
-    "
 
 
 
