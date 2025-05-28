@@ -1,0 +1,23 @@
+sources:
+    my-http-source:
+        kind: http
+        baseUrl: https://data.opendatasoft.com/
+
+tools:
+    generic-belgium-windpower-prod:
+        kind: http
+        source: my-http-source
+        method: GET
+        path: /api/explore/v2.1/catalog/datasets/ods086@external-elia/records?limit=20
+        description: Tool to retrive latest information on Belgian wind power production information
+
+    elia-belgium-windpower-prod:
+        kind: http
+        source: my-http-source
+        method: GET
+        path: /api/explore/v2.1/catalog/datasets/ods086@external-elia/records?limit=20&refine=gridconnectiontype%3A%22Elia%22
+        description: Tool to search information from the example API
+toolsets:
+  my-toolset:
+    - generic-belgium-windpower-prod
+    - elia-belgium-windpower-prod
