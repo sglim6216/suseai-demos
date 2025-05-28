@@ -51,6 +51,8 @@ extraEnvVars:
   value: "SUSE AI"
 - name: GLOBAL_LOG_LEVEL
   value: INFO
+- name: ENABLE_DIRECT_CONNECTIONS
+  value: True
 - name: TOOL_SERVER_CONNECTIONS
   value: |
     [
