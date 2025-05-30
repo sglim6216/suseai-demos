@@ -12,7 +12,7 @@ tools:
     source: demo
     description: Search for a product and it's availablity in stock
     parameters:
-      - name: CompanyName
+      - name: company_name
         type: string
         description: Search or list customer name and customer address of all customers with orders that shipped using a specific delivery provider (i.e.Speedy Express).
     statement: >-
