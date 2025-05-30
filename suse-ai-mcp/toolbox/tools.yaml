@@ -16,7 +16,7 @@ tools:
         type: string
         description: Search or list customer name and customer address of all customers with orders that shipped using a specific delivery provider (i.e.Speedy Express).
     statement: >-
-      SELECT contact_name, address
+      SELECT *
       FROM customers WHERE customer_ID IN 
         (SELECT DISTINCT customer_id FROM Orders WHERE ship_via IN (SELECT shipper_id FROM Shippers WHERE company_name = $1))
   # search-hotels-by-location:
