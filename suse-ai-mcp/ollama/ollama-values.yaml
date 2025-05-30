@@ -22,8 +22,8 @@ ollama:
   models:
     pull:
       - qwen2.5:0.5b-instruct
-      - qwen3:1.7b
-      - cogito:3b
+      # - qwen3:1.7b
+      # - cogito:3b
     # create:
     #   - name: susekai
     #     template: |
