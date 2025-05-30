@@ -7,24 +7,18 @@ sources:
     user: postgres
     password: postgres
 tools:
-  search-available-product-by-name:
+  search-customers-by-shippers:
     kind: postgres-sql
     source: demo
     description: Search for a product and it's availablity in stock
     parameters:
-      - name: product_name
+      - name: CompanyName
         type: string
-        description: Quantity to search.
-    statement: SELECT product_name, quantity_per_unit, units_in_stock FROM public.products WHERE  product_name ILIKE '$1';
-  search-not-available-products:
-    kind: postgres-sql
-    source: demo
-    description: Search for all products available in stock
-    parameters:
-      - name: units_in_stock
-        type: integer
-        description: Quantity to search.
-    statement: SELECT product_name, quantity_per_unit, units_in_stock FROM public.products WHERE units_in_stock > 0;
+        description: Search or list customer name and customer address of all customers with orders that shipped using a specific delivery provider (i.e.Speedy Express).
+    statement: >-
+      SELECT ContactName, Address
+      FROM Customers WHERE CustomerID IN 
+        (SELECT DISTINCT CustomerID FROM Orders WHERE ShipVia IN (SELECT ShipperID FROM Shippers WHERE CompanyName = $1))
   # search-hotels-by-location:
   #   kind: postgres-sql
   #   source: my-pg-source
@@ -74,8 +68,7 @@ tools:
   #   statement: UPDATE hotels SET booked = B'0' WHERE id = $1;
 toolsets:
   my-toolset:
-    - search-available-product-by-name
-    - search-not-available-products
+    - search-customers-by-shippers
     # - search-hotels-by-location
     # - book-hotel
     # - update-hotel

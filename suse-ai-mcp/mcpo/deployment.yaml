@@ -49,12 +49,7 @@ metadata:
   namespace: suseai
 data:
   config.json: |
-    {
-      "mcpServers": {
-        "kubernetes": {
-          "command": "npx",
-          "args": ["mcp-server-kubernetes"]
-        },      
+    {     
         "toolbox": {
           "type": "sse",
           "url": "http://toolbox-service:5000/mcp/sse"
