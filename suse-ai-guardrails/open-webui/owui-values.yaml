@@ -5,20 +5,14 @@ image:
   registry: dp.apps.rancher.io
   repository: containers/open-webui
   tag: 0.6.9
-
-  # registry: ghcr.io
-  # repository: open-webui/open-webui
-  # tag: main
-
-  pullPolicy: IfNotPresent
 ollamaUrls:
-- http://suseai-suse-ai-ollama.suseai.svc.cluster.local:11434
+- http://suseai-suse-ai-mcp-ollama.suseai.svc.cluster.local:11434
 persistence:
   storageClass: local-path
 ollama:
   enabled: false
 pipelines:
-  enabled: true
+  enabled: True
   persistence:
     enabled: false
     storageClass: local-path
@@ -34,9 +28,8 @@ ingress:
 service:
   type: LoadBalancer
   annotations: {}
-  port: 8000
+  port: 8088
   targetPort: 80
-  containerPort: 8080
   nodePort: 31000
   labels: {}
   loadBalancerClass: ""
@@ -58,10 +51,31 @@ extraEnvVars:
   value: "SUSE AI"
 - name: GLOBAL_LOG_LEVEL
   value: INFO
-- name: VECTOR_DB
-  value: "milvus"
-- name: MILVUS_URI
-  value: http://suseai-suse-ai-milvus.suseai.svc.cluster.local:19530
+- name: ENABLE_DIRECT_CONNECTIONS
+  value: "True"
+- name: TOOL_SERVER_CONNECTIONS
+  value: |
+      [{
+        "url": "http://mcpo-service.suseai.svc.cluster.local:8000/toolbox",
+        "path": "openapi.json",
+        "auth_type": "bearer",
+        "key": "top-secret",
+        "config": {
+          "enable": true,
+          "access_control": {
+            "read": {
+              "group_ids": [],
+              "user_ids": []
+            },
+            "write": {
+              "group_ids": [],
+              "user_ids": []
+            }
+          }
+        }
+      }]
+
+
 
 
 
