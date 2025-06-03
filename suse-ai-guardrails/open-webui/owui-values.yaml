@@ -74,6 +74,10 @@ extraEnvVars:
           }
         }
       }]
+- name: VECTOR_DB
+  value: "milvus"
+- name: MILVUS_URI
+  value: http://suseai-suse-ai-milvus.suseai.svc.cluster.local:19530
 
 
 
