@@ -6,7 +6,7 @@ image:
   repository: containers/open-webui
   tag: 0.6.9
 ollamaUrls:
-- http://suseai-suse-ai-mcp-ollama.suseai.svc.cluster.local:11434
+- http://suseai-suse-ai-guardrails-ollama.suseai.svc.cluster.local:11434
 persistence:
   storageClass: local-path
 ollama:
