@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/alessandrofesta/Documents/demos/utils/mlruns/0/34d7047ebb2c4f11a0a62302da043807/artifacts
+end_time: 1748960491926
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 34d7047ebb2c4f11a0a62302da043807
+run_name: useful-finch-164
+run_uuid: 34d7047ebb2c4f11a0a62302da043807
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748960476962
+status: 3
+tags: []
+user_id: alessandrofesta

@@ -27,14 +27,14 @@ tags= {
 
 
 # Optional: Set a tracking URI and an experiment
-mlflow.set_tracking_uri("http://192.168.64.11:5000")
+mlflow.set_tracking_uri("http://192.168.64.13:5000")
 mlflow.set_experiment("Default")
 mlflow.set_experiment_tag("platform", "suse-ai-chat")
 mlflow.set_tags(tags=tags)
 
 model_name = "gemma3:1b-it-qat"
 
-llm = ChatOllama(base_url="http://192.168.64.11:31434",model=model_name)
+llm = ChatOllama(base_url="http://192.168.64.13:31434",model=model_name)
 
 prompt = ChatPromptTemplate.from_messages([
     ("system", "You're an assistant who's good at {ability}"),

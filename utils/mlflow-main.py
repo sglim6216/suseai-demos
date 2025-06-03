@@ -7,8 +7,8 @@ parser=argparse.ArgumentParser()
 parser.add_argument("--version")
 args=parser.parse_args()
 
-client= ollama.Client("http://192.168.64.11:31434")
-mlflow.set_tracking_uri("http://192.168.64.11:5000")
+client= ollama.Client("http://192.168.64.13:31434")
+mlflow.set_tracking_uri("http://192.168.64.13:5000")
 
 target_text = """
 MLflow is an open source platform for managing the end-to-end machine learning lifecycle.
