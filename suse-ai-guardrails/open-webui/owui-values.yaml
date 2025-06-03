@@ -12,7 +12,7 @@ persistence:
 ollama:
   enabled: false
 pipelines:
-  enabled: false
+  enabled: true
   persistence:
     enabled: false
     storageClass: local-path
@@ -53,27 +53,27 @@ extraEnvVars:
   value: INFO
 - name: ENABLE_DIRECT_CONNECTIONS
   value: "True"
-- name: TOOL_SERVER_CONNECTIONS
-  value: |
-      [{
-        "url": "http://mcpo-service.suseai.svc.cluster.local:8000/toolbox",
-        "path": "openapi.json",
-        "auth_type": "bearer",
-        "key": "top-secret",
-        "config": {
-          "enable": true,
-          "access_control": {
-            "read": {
-              "group_ids": [],
-              "user_ids": []
-            },
-            "write": {
-              "group_ids": [],
-              "user_ids": []
-            }
-          }
-        }
-      }]
+# - name: TOOL_SERVER_CONNECTIONS
+#   value: |
+#       [{
+#         "url": "http://mcpo-service.suseai.svc.cluster.local:8000/toolbox",
+#         "path": "openapi.json",
+#         "auth_type": "bearer",
+#         "key": "top-secret",
+#         "config": {
+#           "enable": true,
+#           "access_control": {
+#             "read": {
+#               "group_ids": [],
+#               "user_ids": []
+#             },
+#             "write": {
+#               "group_ids": [],
+#               "user_ids": []
+#             }
+#           }
+#         }
+#       }]
 - name: VECTOR_DB
   value: "milvus"
 - name: MILVUS_URI
