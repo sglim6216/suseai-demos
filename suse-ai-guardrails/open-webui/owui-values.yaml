@@ -43,6 +43,8 @@ extraEnvVars:
   value: "dev"
 - name: OPENAI_API_KEY
   value: "0p3n-w3bu!"
+- name: OPENAI_API_BASE_URL
+  value: http://suseai-suse-ai-guardrails-owui-pipelines.suseai.svc.cluster.local:9099
 - name: DEFAULT_MODELS
   value: ""
 - name: DEFAULT_USER_ROLE
