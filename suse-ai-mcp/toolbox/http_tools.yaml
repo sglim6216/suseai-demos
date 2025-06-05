@@ -4,20 +4,31 @@ sources:
         baseUrl: https://data.opendatasoft.com/
 
 tools:
-    generic-belgium-windpower-prod:
+    available_bikes_jdecaux:
         kind: http
         source: my-http-source
         method: GET
-        path: /api/explore/v2.1/catalog/datasets/ods086@external-elia/records?limit=20
-        description: Tool to retrive latest information on Belgian wind power production information
-
-    elia-belgium-windpower-prod:
+        queryParams:
+            - name: status
+              type: string
+              description: provide status of the stall, may be OPEN or CLOSED
+            - name: available_bikes
+              type: integer
+              description: minimum number of bikes
+        path: /api/explore/v2.1/catalog/datasets/jcdecaux-bike-stations-data-rt@public/records
+        description: Tool to retrive latest information on available bikes in france at Jdecaux
+    air-bnb-listings:
         kind: http
         source: my-http-source
         method: GET
-        path: /api/explore/v2.1/catalog/datasets/ods086@external-elia/records?limit=20&refine=gridconnectiontype%3A%22Elia%22
-        description: Tool to search information from the example API
+        queryParams:
+            - name: city
+              type: string
+              description: search for an airbnb at a specific city 
+        path: https://data.opendatasoft.com/api/explore/v2.1/catalog/datasets/air-bnb-listings@public/records
+        description: Tool to retrive latest information on specific airbnb house in a metropolitan area 
 toolsets:
   my-toolset:
-    - generic-belgium-windpower-prod
-    - elia-belgium-windpower-prod
+    - available_bikes_jdecaux
+    - air-bnb-listings
+
