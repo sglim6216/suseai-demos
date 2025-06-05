@@ -12,7 +12,7 @@ spec:
     metadata:
       labels:
         app: mcpo
-    # spec:
+    spec:
     #   serviceAccountName: cluster-admin-sa
       containers:
         - name: mcpo-container
