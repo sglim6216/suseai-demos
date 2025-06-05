@@ -12,8 +12,8 @@ spec:
     metadata:
       labels:
         app: mcpo
-    spec:
-      serviceAccountName: cluster-admin-sa
+    # spec:
+    #   serviceAccountName: cluster-admin-sa
       containers:
         - name: mcpo-container
           image: ghcr.io/open-webui/mcpo:latest

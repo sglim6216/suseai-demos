@@ -12,8 +12,8 @@ spec:
     metadata:
       labels:
         app: toolbox
-    spec:
-      serviceAccountName: cluster-admin-sa
+    # spec:
+    #   serviceAccountName: cluster-admin-sa
       containers:
         - name: toolbox
           # Recommend to use the latest version of toolbox
