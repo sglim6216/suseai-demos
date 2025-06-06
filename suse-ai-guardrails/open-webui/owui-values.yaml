@@ -6,7 +6,7 @@ image:
   repository: containers/open-webui
   tag: 0.6.9
 ollamaUrls:
-- http://suseai-suse-ai-guardrails-ollama.suseai.svc.cluster.local:11434
+- http://suseai-guardrails-suse-ai-guardrails-ollama.suseai.svc.cluster.local:11434
 persistence:
   storageClass: local-path
 ollama:
@@ -79,7 +79,7 @@ extraEnvVars:
 - name: VECTOR_DB
   value: "milvus"
 - name: MILVUS_URI
-  value: http://suseai-suse-ai-guardrails-milvus.suseai.svc.cluster.local:19530
+  value: http://suseai-guardrails-suse-ai-guardrails-milvus.suseai.svc.cluster.local:19530
 
 
 
