@@ -2,6 +2,7 @@ sources:
     my-http-source:
         kind: http
         baseUrl: https://data.opendatasoft.com/
+        
 
 tools:
     available_bikes_jdecaux:
