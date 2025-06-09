@@ -17,7 +17,8 @@ spec:
       containers:
         - name: toolbox
           # Recommend to use the latest version of toolbox
-          image: us-central1-docker.pkg.dev/database-toolbox/toolbox/toolbox:latest
+          # image: us-central1-docker.pkg.dev/database-toolbox/toolbox/toolbox:latest
+          image: ghcr.io/alessandro-festa/toolbox:latest
           args: ["--address", "0.0.0.0"]
           ports:
             - containerPort: 5000
