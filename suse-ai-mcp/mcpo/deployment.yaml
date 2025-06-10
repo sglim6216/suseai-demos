@@ -16,7 +16,7 @@ spec:
     #   serviceAccountName: cluster-admin-sa
       containers:
         - name: mcpo-container
-          image: ghcr.io/open-webui/mcpo:latest
+          image: ghcr.io/alessandro-festa/mcpo:latest
           ports:
             - containerPort: 8000
           command: ["mcpo"] # Entrypoint of the container

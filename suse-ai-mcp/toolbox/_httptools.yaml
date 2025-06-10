@@ -1,0 +1,35 @@
+sources:
+    my-http-source:
+        kind: http
+        baseUrl: https://data.opendatasoft.com/
+        
+
+tools:
+    available_bikes_jdecaux:
+        kind: http
+        source: my-http-source
+        method: GET
+        queryParams:
+            - name: status
+              type: string
+              description: provide status of the stall, may be OPEN or CLOSED
+            - name: available_bikes
+              type: integer
+              description: minimum number of bikes
+        path: /api/explore/v2.1/catalog/datasets/jcdecaux-bike-stations-data-rt@public/records
+        description: Tool to retrive latest information on available bikes in france at Jdecaux
+    air-bnb-listings:
+        kind: http
+        source: my-http-source
+        method: GET
+        queryParams:
+            - name: city
+              type: string
+              description: search for an airbnb at a specific city 
+        path: https://data.opendatasoft.com/api/explore/v2.1/catalog/datasets/air-bnb-listings@public/records
+        description: Tool to retrive latest information on specific airbnb house in a metropolitan area 
+toolsets:
+  my-toolset:
+    - available_bikes_jdecaux
+    - air-bnb-listings
+
