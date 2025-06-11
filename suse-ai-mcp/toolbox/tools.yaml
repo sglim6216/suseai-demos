@@ -1,7 +1,7 @@
 sources:
     rancher-api:
         kind: http
-        baseUrl: https://rancher.cattle-system.svc.cluster.local:8443/v3
+        baseUrl: https://rancher.cattle-system.svc.cluster.local:8443/
         headers:
           Authorization: Bearer token-g4tnh:c55nsmpwfmwrnbdrcdhkw46lvjks5spp8kn8hb8xrsmftkzqk2n7jd
           # Authorization: Bearer token-z7n4g:hxfwbbcvxxkcxgrjqk8f8w67q8sth96kncg6bg8x5mlb8pqrklclkt
@@ -9,25 +9,336 @@ sources:
         disableSslVerification: true
 
 tools:
+    authConfigs: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/authconfigs
+      description: Authentication configuration in Rancher
+    cloudCredentials: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/cloudcredentials
+      description: Cloud credentials in Rancher
+    clusterRegistrationTokens: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/clusterregistrationtokens
+      description: cluster registration tokens in Rancher
+    clusterRoleTemplateBindings: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/clusterroletemplatebindings
+      description: cluster role template in Rancher
+    clusterTemplateRevisions: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/clustertemplaterevisions
+      description: cluster template revisions in Rancher
+    clusterTemplates: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/clustertemplates
+      description: cluster templates in Rancher
+    clusters: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/clusters
+      description: clusters in Rancher
+    composeConfigs: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/composeconfigs
+      description: compose configurations in Rancher
+    dynamicSchemas: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/dynamicschemas
+      description: dyanmic schemas in Rancher
+    etcdBackups: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/etcdbackups
+      description: etcd backups in Rancher
+    features: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/features
+      description: enabled features in Rancher
+    fleetWorkspaces: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/fleetworkspaces
+      description: fleet workspaces in Rancher
+    globalRoleBindings: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/globalrolebindings
+      queryParams:
+      requestBody: |
+            {
+            "userId": {{.userid}}
+            }
+      bodyParams:
+        - name: userid
+          description: userid of the user
+          type: string
+      description: global role bindings in Rancher
+    globalRoles: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/globalroles
+      requestBody: |
+            {
+            "username": {{.username}}
+            }
+      bodyParams:
+        - name: username
+          description: name of the user
+          type: string
+      description: global roles in Rancher
+    groupMembers: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/groupmembers
+      requestBody: |
+            {
+            "username": {{.username}}
+            }
+      bodyParams:
+        - name: username
+          description: name of the user
+          type: string
+      description: group members in Rancher
+    groups: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/groups
+      requestBody: |
+            {
+            "username": {{.username}}
+            }
+      bodyParams:
+        - name: username
+          description: name of the user
+          type: string
+      description: groups in Rancher
+    kontainerDrivers: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/kontainerdrivers
+      description: containers drivers in Rancher
+    ldapConfigs: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/ldapconfigs
+      description: ldap configurations in Rancher
+    managementSecrets: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/managementsecrets
+      description: management secrets in Rancher
+    nodeDrivers: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/nodedrivers
+      description: node drivers in Rancher
+    nodePools: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/nodepools
+      description: node pools in Rancher
+    nodeTemplates: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/nodetemplates
+      description: node templates in Rancher
+    nodes: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/nodes
+      description: nodes in Rancher
+    podSecurityAdmissionConfigurationTemplates: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/podsecurityadmissionconfigurationtemplates
+      description: pod security admission configuration templates in Rancher
+    preferences: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/preferences
+      description: preferences in Rancher
+    principals: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/principals
+      description: principals in Rancher
+    projectNetworkPolicies: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/projectnetworkpolicies
+      description: project network polices in Rancher
+    projectRoleTemplateBindings: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/projectroletemplatebindings
+      description: project role template bindings in Rancher
+    projects: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/projects
+      description: projects in Rancher
+    rancherUserNotifications: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/rancherusernotifications
+      description: Rancher user notifications
+    rkeAddons: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/rkeaddons
+      description: RKE2 addons in Rancher
+    rkeK8sServiceOptions: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/rkek8sserviceoptions
+      description: RKE2 kubernetes service options in Rancher
+    rkeK8sSystemImages: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/rkek8ssystemimages
+      description: RKE2 system images in Rancher
+    roleTemplates: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/roletemplates
+      description: role templates in Rancher
+    root: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3
+      description: root api in Rancher
+    samlTokens: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/samltokens
+      description: samltokens in Rancher
+    self: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3
+      description: self api in Rancher
+    settings: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/settings
+      description: settings in Rancher
+    subscribe: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/subscribe
+      description: subscribe api in Rancher
+    tokens: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v3/tokens
+      description: tokens in Rancher
     users:
       kind: http
       source: rancher-api
       method: GET
-      path: /users
-      description: Tool to retrive all user under Rancher manager installations
-    globalroles:
-      kind: http
-      source: rancher-api
-      method: GET
+      path: /v3/users
       queryParams:
-          - name: username
-            type: string
-            description: the username of the user to search
-      path: /globalroles
-      description: Tool to retrieve global roles for a specific user
+      requestBody: |
+            {
+            "username": {{.username}}
+            }
+      bodyParams:
+        - name: username
+          description: name of the user
+          type: string
+      description: find a user or all users in Rancher
 
 toolsets:
   my-toolset:
+    - authConfigs
+    - cloudCredentials
+    - clusterRegistrationTokens
+    - clusterRoleTemplateBindings
+    - clusterTemplateRevisions
+    - clusterTemplates
+    - clusters
+    - composeConfigs
+    - dynamicSchemas
+    - etcdBackups
+    - features
+    - fleetWorkspaces
+    - globalRoleBindings
+    - globalRoles
+    - groupMembers
+    - groups
+    - kontainerDrivers
+    - ldapConfigs
+    - managementSecrets
+    - nodeDrivers
+    - nodePools
+    - nodeTemplates
+    - nodes
+    - podSecurityAdmissionConfigurationTemplates
+    - preferences
+    - principals
+    - projectNetworkPolicies
+    - projectRoleTemplateBindings
+    - projects
+    - rancherUserNotifications
+    - rkeAddons
+    - rkeK8sServiceOptions
+    - rkeK8sSystemImages
+    - roleTemplates
+    - root
+    - samlTokens
+    - self
+    - settings
+    - subscribe
+    - tokens
     - users
-    - globalroles
 
