@@ -3,19 +3,31 @@ sources:
         kind: http
         baseUrl: https://rancher.cattle-system.svc.cluster.local:8443/v3
         headers:
-          # Authorization: Bearer token-g4tnh:c55nsmpwfmwrnbdrcdhkw46lvjks5spp8kn8hb8xrsmftkzqk2n7jd
-          Authorization: Bearer token-z7n4g:hxfwbbcvxxkcxgrjqk8f8w67q8sth96kncg6bg8x5mlb8pqrklclkt
+          Authorization: Bearer token-g4tnh:c55nsmpwfmwrnbdrcdhkw46lvjks5spp8kn8hb8xrsmftkzqk2n7jd
+          # Authorization: Bearer token-z7n4g:hxfwbbcvxxkcxgrjqk8f8w67q8sth96kncg6bg8x5mlb8pqrklclkt
           Content-Type: application/json
         disableSslVerification: true
 
 tools:
     users:
-        kind: http
-        source: rancher-api
-        method: GET
-        path: /users
-        description: Tool to retrive all user under Rancher manager installations
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /users
+      description: Tool to retrive all user under Rancher manager installations
+    globalroles:
+      kind: http
+      source: rancher-api
+      method: GET
+      queryParams:
+          - name: username
+            type: string
+            description: the username of the user to search
+      path: /globalroles
+      description: Tool to retrieve global roles for a specific user
+
 toolsets:
   my-toolset:
     - users
+    - globalroles
 
