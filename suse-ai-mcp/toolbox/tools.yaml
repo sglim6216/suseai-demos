@@ -286,14 +286,14 @@ tools:
       kind: http
       source: rancher-api
       method: GET
-      path: /v3/users
+      path: /v3/users/{{.userid}}
       queryParams:
-      requestBody: |
-            {
-            "username": {{.username}}
-            }
+      # requestBody: |
+      #       {
+      #       "username": {{.username}}
+      #       }
       bodyParams:
-        - name: username
+        - name: userid
           description: name of the user
           type: string
       description: find a user or all users in Rancher
