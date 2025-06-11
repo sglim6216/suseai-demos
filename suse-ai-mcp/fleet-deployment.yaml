@@ -13,5 +13,6 @@ spec:
   branch: main
   paths:
   - suse-ai-mcp
+  - suse-ai-guardrails/owui-pipelines
 
 
