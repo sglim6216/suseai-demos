@@ -88,8 +88,119 @@ tools:
       path: /v3/globalrolebindings
       queryParams:
       requestBody: |
+        {
+            "type": "collection",
+            "links": {
+            "self": "…/v3/globalRoleBindings"
+            },
+            "createTypes": {
+            "globalRoleBinding": "…/v3/globalrolebindings"
+            },
+            "actions": { },
+            "pagination": {
+            "limit": 1000,
+            "total": 1
+            },
+            "sort": {
+            "order": "asc",
+            "reverse": "…/v3/globalRoleBindings?order=desc&userId={{.userId}}",
+            "links": {
+            "uuid": "…/v3/globalRoleBindings?sort=uuid&userId={{.userId}}"
+            }
+            },
+            "filters": {
+            "created": null,
+            "creatorId": null,
+            "globalRoleId": null,
+            "groupPrincipalId": null,
+            "name": null,
+            "removed": null,
+            "userId": [
             {
-            "userId": {{.userid}}
+            "modifier": "eq",
+            "value": "{{.userId}}"
+            }
+            ],
+            "userPrincipalId": null,
+            "uuid": null
+            },
+            "resourceType": "globalRoleBinding",
+            "data": [
+            {
+            "annotations": {
+            "cleanup.cattle.io/grbUpgradeCluster": "true",
+            "lifecycle.cattle.io/create.mgmt-auth-grb-controller": "true"
+            },
+            "baseType": "globalRoleBinding",
+            "created": "",
+            "createdTS": ,
+            "creatorId": null,
+            "globalRoleId": "",
+            "groupPrincipalId": null,
+            "id": "globalrolebinding-cs4v4",
+            "labels": {
+            "authz.management.cattle.io/bootstrapping": "admin-user"
+            },
+            "links": {
+            "remove": "…/v3/globalRoleBindings/globalrolebinding-cs4v4",
+            "self": "…/v3/globalRoleBindings/globalrolebinding-cs4v4",
+            "update": "…/v3/globalRoleBindings/globalrolebinding-cs4v4"
+            },
+            "name": "globalrolebinding-cs4v4",
+            "status": {
+            "lastUpdateTime": "",
+            "localConditions": [ 4 items
+            {
+            "lastTransitionTime": "",
+            "message": "",
+            "reason": "SubjectExists",
+            "status": "True",
+            "type": "SubjectReconciled"
+            },
+            {
+            "lastTransitionTime": "",
+            "message": "",
+            "reason": "ClusterPermissionsReconciled",
+            "status": "True",
+            "type": "ClusterPermissionsReconciled"
+            },
+            {
+            "lastTransitionTime": "",
+            "message": "",
+            "reason": "GlobalRoleBindingReconciled",
+            "status": "True",
+            "type": "GlobalRoleBindingReconciled"
+            },
+            {
+            "lastTransitionTime": "",
+            "message": "",
+            "reason": "NamespacedRoleBindingReconciled",
+            "status": "True",
+            "type": "NamespacedRoleBindingReconciled"
+            }
+            ],
+            "observedGenerationLocal": 1,
+            "observedGenerationRemote": 2,
+            "remoteConditions": [
+            {
+            "lastTransitionTime": "",
+            "message": "",
+            "reason": "ClusterAdminRoleExists",
+            "status": "True",
+            "type": "ClusterAdminRoleExists"
+            }
+            ],
+            "summary": "Completed",
+            "summaryLocal": "Completed",
+            "summaryRemote": "Completed",
+            "type": "/v3/schemas/globalRoleBindingStatus"
+            },
+            "type": "globalRoleBinding",
+            "userId": "{{.userId}}",
+            "userPrincipalId": "local://{{.userId}}",
+            "uuid": ""
+            }
+            ]
             }
       bodyParams:
         - name: userid
@@ -286,12 +397,38 @@ tools:
       kind: http
       source: rancher-api
       method: GET
-      path: /v3/users/{{.userid}}
+      path: /v3/users
       queryParams:
-      # requestBody: |
-      #       {
-      #       "username": {{.username}}
-      #       }
+      requestBody: |
+            {
+                  "actions": {
+                  "refreshauthprovideraccess": "…/v3/users/{{.userId}}?action=refreshauthprovideraccess",
+                  "setpassword": "…/v3/users/{{.userId}}?action=setpassword"
+                  },
+                  "annotations": {
+                  },
+                  "links": {
+                  "clusterRoleTemplateBindings": "…/v3/clusterRoleTemplateBindings?userId={{.userId}}",
+                  "globalRoleBindings": "…/v3/globalRoleBindings?userId={{.userId}}",
+                  "projectRoleTemplateBindings": "…/v3/projectRoleTemplateBindings?userId={{.userId}}",
+                  "remove": "…/v3/users/{{.userId}}",
+                  "self": "…/v3/users/{{.userId}}",
+                  "tokens": "…/v3/tokens?userId={{.userId}}",
+                  "update": "…/v3/users/{{.userId}}"
+                  },
+                  "me": true,
+                  "mustChangePassword": false,
+                  "name": "",
+                  "principalIds": [
+                  "local://{{.userId}}"
+                  ],
+                  "state": "",
+                  "transitioning": "no",
+                  "transitioningMessage": "",
+                  "type": "user",
+                  "username": "",
+                  "uuid": ""
+            }
       bodyParams:
         - name: userid
           description: name of the user
