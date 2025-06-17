@@ -55,6 +55,10 @@ extraEnvVars:
   value: INFO
 - name: ENABLE_DIRECT_CONNECTIONS
   value: "True"
+- name: VECTOR_DB
+  value: "milvus"
+- name: MILVUS_URI
+  value: http://suseai-suse-ai-milvus.suseai.svc.cluster.local:19530
 - name: TOOL_SERVER_CONNECTIONS
   value: |
       [{

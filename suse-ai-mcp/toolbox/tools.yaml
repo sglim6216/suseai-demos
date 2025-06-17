@@ -434,6 +434,12 @@ tools:
           description: name of the user
           type: string
       description: find a user or all users in Rancher
+    pods: 
+      kind: http
+      source: rancher-api
+      method: GET
+      path: /v1/pods
+      description: pods in Rancher    
 
 toolsets:
   my-toolset:
@@ -478,4 +484,5 @@ toolsets:
     - subscribe
     - tokens
     - users
+    - pods
 
