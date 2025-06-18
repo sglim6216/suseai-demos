@@ -6,7 +6,7 @@ image:
   repository: containers/open-webui
   tag: 0.6.9
 ollamaUrls:
-- http://suseai-suse-ai-guardrails-ollama.suseai.svc.cluster.local:11434
+- http://suseai-guardrails-suse-ai-guardrails-ollama.suseai.svc.cluster.local:11434
 persistence:
   storageClass: local-path
 ollama:
@@ -44,7 +44,7 @@ extraEnvVars:
 - name: OPENAI_API_KEY
   value: "0p3n-w3bu!"
 - name: OPENAI_API_BASE_URL
-  value: http://suseai-suse-ai-guardrails-owui-pipelines.suseai.svc.cluster.local:9099
+  value: http://suseai-guardrails-suse-ai-guardrails-owui-pipelines.suseai.svc.cluster.local:9099
 - name: DEFAULT_MODELS
   value: ""
 - name: DEFAULT_USER_ROLE
@@ -79,7 +79,7 @@ extraEnvVars:
 - name: VECTOR_DB
   value: "milvus"
 - name: MILVUS_URI
-  value: http://suseai-suse-ai-guardrails-milvus.suseai.svc.cluster.local:19530
+  value: http://suseai-guardrails-suse-ai-guardrails-milvus.suseai.svc.cluster.local:19530
 
 
 
