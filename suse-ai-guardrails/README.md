@@ -64,93 +64,35 @@ helm upgrade --install cert-manager \
   --set "global.imagePullSecrets[0].name"="application-collection"
 ```
 
-### Deploy Rancher Fleet
+### Deploy Rancher
 
+We have to install Rancher enabling the OCI extensions
 ```SHELL
-helm -n cattle-fleet-system install --create-namespace --wait fleet-crd \
-    fleet/fleet-crd
+helm install rancher rancher-stable/rancher \
+--namespace cattle-system \
+--set hostname=192.168.5.15 \
+--set bootstrapPassword=admin \
+--set-string extraEnv[0].name=EXPERIMENTAL_OCI_STORAGE \
+--set-string extraEnv[0].value=true \
 ```
-```SHELL
-helm -n cattle-fleet-system install --create-namespace --wait fleet \
-    fleet/fleet
-```
-At this point we are ready to pickup the greendoc recipe
+Let's wait for Rancher to be installed. Follow the instruction from [here](https://ranchermanager.docs.rancher.com/getting-started/quick-start-guides/deploy-rancher-manager/helm-cli#install-rancher-with-helm).
+Login into Rancher UI and check if everything is up and running.
 
-## Deploy a minimal SUSEAI Stack with Rancher Fleet
-
-Let's create a minimal github configuration and save it as suseai.yaml
-
-```YAML
-apiVersion: fleet.cattle.io/v1alpha1
-kind: GitRepo
-metadata:
-  name: suseai
-  # This namespace is special and auto-wired to deploy to the local cluster
-  namespace: fleet-local
-spec:
-  repo: https://github.com/alessandro-festa/demos
-  helmSecretName: basic-auth-secret
-  ociRegistry:
-    authSecretName: application-collection
-  branch: main
-  paths:
-  - suse-ai
-```
-and add a generic secret for basic authentication
+Now let's move to the final steps, first let's add a generic secret for basic authentication
 
 ```SHELL
 kubectl create secret generic basic-auth-secret \--from-literal=username=<your registered account on appco> \
 --from-literal=password=<INSERT YOUR TOKEN FROM APPCO> \
 -n fleet-local
 ```
-Now let's execute the config with kubectl
+Once done we may move to Rancher Continous Delivery in the Rancher UI and add our repo.
 
-```SHELL
-kubectl apply -f fleet-deployment.yaml
-```
-You should have minimal SUSE AI stack deployed
+* Give a generic name, in this example we use the root folder name (i.e.: suse-ai-guardrails).
+* Add the github repo `https://github.com/alessandro-festa/demos`
+* Choose the fleet-local deployment (on the top right of the page) and add as namespace `suseai``
+* Finally in the last step edit using the YAML file and replace the value in `HELMSecret`adding `basic-auht-secret`(the secret we created above)
+
+Hit finish and that's it You should have minimal SUSE AI stack deployed
 
 Let's check that! Simply open a browser and point to [http://localhost:31000](http://localhost:31000)
 
-# A very simple demo
-
-Now let's customize a bit our little environment. We want to create a very basic custom model that has a a custom system prompt
-
-Let's go back to our Ollama yaml file and let's add this section below after
-
-```SHELL
-ollama: 
-  # -- List of models to pull at container startup
-  models:
-    pull:
-      - qwen2.5:0.5b-instruct
-```
-
-```SHELL
-ollama: 
-  # -- List of models to pull at container startup
-  models:
-    pull:
-      - gemma3:1b-it-qat
-    create:
-      - name: suseai-k8s
-        template: |
-          FROM gemma3:1b-it-qat
-          # sets the temperature to 1 [higher is more creative, lower is more coherent]
-          PARAMETER temperature 1
-          # sets the context window size to 4096, this controls how many tokens the LLM can use as context to generate the next token
-          PARAMETER num_ctx 4096
-
-          # sets a custom system message to specify the behavior of the chat assistant
-          SYSTEM """ You are an advanced RBAC assistant for Rancher and Kubernetes environments. 
-          Your role is to provide tailored recommendations for RBAC configurations, cluster access, 
-          and observability settings based on the following context and inputs. """
-
-          MESSAGE user Is there any pod in a non healthy status?
-          MESSAGE assistant yes, here's a list of pods in each namespace that are not in healthy status
-          MESSAGE user Can you list namespaces I have in my cluster?
-          MESSAGE assistant yes, here it is the list of namespaces
-    run: 
-      - suseai-k8s
-```
-Once we are ready, let's commit and observe...our Open-WebUI will now show a nice custom model we may use immediately.
