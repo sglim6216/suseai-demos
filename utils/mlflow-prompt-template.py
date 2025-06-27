@@ -1,12 +1,12 @@
 import mlflow
 
-mlflow.set_tracking_uri("http://192.168.64.13:5000")
-# # Use double curly braces for variables in the template
-# initial_template = """\
-# Summarize content you are provided with in {{ num_sentences }} sentences.
+mlflow.set_tracking_uri("http://192.168.64.14:5000")
+# Use double curly braces for variables in the template
+initial_template = """\
+Summarize content you are provided with in {{ num_sentences }} sentences.
 
-# Sentences: {{ sentences }}
-# """
+Sentences: {{ sentences }}
+"""
 
 # # Register a new prompt
 # prompt = mlflow.register_prompt(
