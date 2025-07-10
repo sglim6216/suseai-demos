@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/alessandrofesta/Documents/demos/utils/mlruns/0/e47fd8e86bc44a72baf0604e503d5f75/artifacts
+end_time: 1751033258610
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: e47fd8e86bc44a72baf0604e503d5f75
+run_name: hilarious-colt-837
+run_uuid: e47fd8e86bc44a72baf0604e503d5f75
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1751033243593
+status: 3
+tags: []
+user_id: alessandrofesta

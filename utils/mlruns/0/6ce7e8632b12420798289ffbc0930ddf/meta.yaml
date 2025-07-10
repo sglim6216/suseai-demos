@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/alessandrofesta/Documents/demos/utils/mlruns/0/6ce7e8632b12420798289ffbc0930ddf/artifacts
+end_time: 1751377045338
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 6ce7e8632b12420798289ffbc0930ddf
+run_name: delicate-crow-435
+run_uuid: 6ce7e8632b12420798289ffbc0930ddf
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1751377030308
+status: 3
+tags: []
+user_id: alessandrofesta

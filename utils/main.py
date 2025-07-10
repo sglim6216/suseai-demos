@@ -21,7 +21,7 @@ with mlflow.start_run() as run:
     time.sleep(15)
 
 tags= {
-    "model": "gemma3:1b-it-qat",
+    "model": "qwen3:0.6b ",
     "platform": "suse-ai"
 }
 
@@ -32,7 +32,7 @@ mlflow.set_experiment("Default")
 mlflow.set_experiment_tag("platform", "suse-ai-chat")
 mlflow.set_tags(tags=tags)
 
-model_name = "customer_assistant:latest"
+model_name = "qwen3:0.6b"
 
 llm = ChatOllama(base_url="http://192.168.64.14:31434",model=model_name)
 
@@ -67,6 +67,6 @@ def chatbot(input_value, history):
     yield full_response
 
 
-iface = gr.ChatInterface(fn=chatbot, title="🦙💬 Chatbot using Gemma3 via Ollama")
+iface = gr.ChatInterface(fn=chatbot, title="🦙💬 Chatbot using SUSE AI via Ollama")
 iface.launch(inbrowser=True)
 

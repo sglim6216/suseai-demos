@@ -29,7 +29,7 @@ response = client.chat(
             "content": prompt.format(num_sentences=1, sentences=target_text),
         }
     ],
-    model="customer_assistant:latest",
+    model="qwen3:0.6b",
 )
 
 print(f"User asked: " + target_text)
