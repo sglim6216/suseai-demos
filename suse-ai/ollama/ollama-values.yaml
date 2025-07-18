@@ -20,7 +20,7 @@ ollama:
   # -- List of models to pull at container startup
   models:
     pull:
-      - gemma3:1b-it-qat
+      - qwen3:0.6b
     # create:
     #   - name: suseai-k8s
     #     template: |
