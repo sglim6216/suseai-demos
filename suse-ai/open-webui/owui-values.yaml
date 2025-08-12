@@ -37,14 +37,14 @@ ingress:
   host: ollama
   tls: true
 service:
-  type: nodePort
+  type: NodePort
   annotations: {}
   port: 8000
   targetPort: 80
-  containerPort: 8080
+  #containerPort: 8080
   nodePort: 31000
   labels: {}
-  loadBalancerClass: ""
+  #loadBalancerClass: ""
 # -- OpenAI base API URL to use. Defaults to the Pipelines service endpoint when Pipelines are enabled, and "https://api.openai.com/v1" if Pipelines are not enabled and this value is blank
 openaiBaseApiUrl: ""
 # -- Env vars added to the Open WebUI deployment. Most up-to-date environment variables can be found here: https://docs.openwebui.com/getting-started/env-configuration/
