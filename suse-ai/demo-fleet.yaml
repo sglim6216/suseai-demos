@@ -5,7 +5,7 @@ metadata:
   # This namespace is special and auto-wired to deploy to the local cluster
   namespace: fleet-default
 spec:
-  repo: https://github.com/alessandro-festa/demos
+  repo: https://github.com/sglim6216/suseai-demos
   helmSecretName: basic-auth-secret
   ociRegistry:
     authSecretName: application-collection
