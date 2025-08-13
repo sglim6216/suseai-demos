@@ -86,7 +86,7 @@ kind: GitRepo
 metadata:
   name: suseai
   # This namespace is special and auto-wired to deploy to the local cluster
-  namespace: fleet-local
+  namespace: fleet-default
 spec:
   repo: https://github.com/alessandro-festa/demos
   helmSecretName: basic-auth-secret
