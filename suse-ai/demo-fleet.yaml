@@ -1,29 +1,29 @@
-apiVersion: fleet.cattle.io/v1alpha1
-kind: GitRepo
-metadata:
-  name: suseai
+#apiVersion: fleet.cattle.io/v1alpha1
+#kind: GitRepo
+#metadata:
+  #name: suseai
   # This namespace is special and auto-wired to deploy to the local cluster
-  namespace: fleet-default
-spec:
-  repo: https://github.com/sglim6216/suseai-demos
-  helmSecretName: basic-auth-secret
-  ociRegistry:
-    authSecretName: application-collection
-  branch: main
-  paths:
-  - suse-ai
-  targets:
-  - name: dev
-    clusterSelector:
-      matchLabels:
-        env: dev
+  #namespace: fleet-default
+#spec:
+  #repo: https://github.com/sglim6216/suseai-demos
+ # helmSecretName: basic-auth-secret
+  #ociRegistry:
+    #authSecretName: application-collection
+ # branch: main
+ # paths:
+ # - suse-ai
+ # targets:
+#  - name: dev
+#    clusterSelector:
+#      matchLabels:
+ #       env: dev
 
-  - name: test
-    clusterSelector:
-      matchLabels:
-        env: test
+ # - name: test
+#    clusterSelector:
+ #     matchLabels:
+#        env: test
 
-  - name: prod
-    clusterSelector:
-      matchLabels:
-        env: prod
+#  - name: prod
+#    clusterSelector:
+#     matchLabels:
+ #       env: prod
